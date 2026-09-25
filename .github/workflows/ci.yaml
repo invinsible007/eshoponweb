@@ -72,6 +72,9 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
+      - name: Restore NuGet packages
+        run: dotnet restore src/Web/Web.csproj
+
       - name: Run Snyk Open Source Scan
         uses: snyk/actions/dotnet@master
         env:
