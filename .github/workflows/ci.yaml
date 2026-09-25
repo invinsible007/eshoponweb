@@ -71,16 +71,16 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-
-      - name: Restore NuGet packages
-        run: dotnet restore src/Web/Web.csproj
+      
+      - name: Restore Dependencies
+        run: dotnet restore eShopOnWeb.slnx
 
       - name: Run Snyk Open Source Scan
         uses: snyk/actions/dotnet@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --file=src/Web/Web.csproj --severity-threshold=high
+          args: --file=eShopOnWeb.slnx --severity-threshold=high
   
   docker-build-push:
     name: Build & Push Docker Image
