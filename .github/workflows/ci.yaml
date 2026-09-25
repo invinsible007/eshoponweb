@@ -77,7 +77,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --file=eShopOnWeb.slnx --severity-threshold=high
+          args: --file=src/Web/Web.csproj --severity-threshold=high
   
   docker-build-push:
     name: Build & Push Docker Image
