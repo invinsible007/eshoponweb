@@ -12,8 +12,8 @@ WORKDIR /src
 
 # Copy solution file and project files first to maximize Docker layer caching
 COPY ["eShopOnWeb.slnx", "./"]
-COPY ["src", "./src/"]
-COPY ["test", "./src/"]
+COPY ["src", "src/"]
+COPY ["tests", "src/"]
 #COPY ["src/Web/Web.csproj", "src/Web/"]
 #COPY ["src/ApplicationCore/ApplicationCore.csproj", "src/ApplicationCore/"]
 #COPY ["src/Infrastructure/Infrastructure.csproj", "src/Infrastructure/"]
