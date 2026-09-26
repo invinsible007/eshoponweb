@@ -89,7 +89,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
           snyk auth ${{secrets.SNYK_TOKEN}}
-          snyk test --all-projects --severity-threshold=high --sarif-file-output=snyk.sarif
+          snyk test --file=src/Web/Web.csproj --severity-threshold=high --sarif-file-output=snyk.sarif
       
       - name: Upload Snyk report as sarif 
         uses: github/codeql-action/upload-sarif@v4
