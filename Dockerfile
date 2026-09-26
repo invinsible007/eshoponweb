@@ -19,7 +19,7 @@ COPY ["src/BlazorAdmin/BlazorAdmin.csproj", "src/BlazorAdmin/"]
 COPY ["src/BlazorShared/BlazorShared.csproj", "src/BlazorShared/"]
 
 # Restore dependencies
-RUN dotnet restore "src/Web/Web.csproj"
+RUN dotnet restore "eShopOnWeb.slnx"
 
 # Copy remaining source code and build
 COPY . .
@@ -35,3 +35,8 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Web.dll"]
+
+
+
+
+
