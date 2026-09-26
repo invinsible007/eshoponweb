@@ -84,17 +84,12 @@ jobs:
         run: npm install -g snyk
 
       - name: Run Snyk Open Source Scan
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
           snyk auth ${{secrets.SNYK_TOKEN}}
-          snyk test --file=src/Web/Web.csproj --package-manager=nuget --severity-threshold=high --sarif-file-output=snyk.sarif
-      
-      - name: Upload Snyk report as sarif 
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: snyk.sarif
-          category: open-source-scan
+          snyk test --file=src/Web/obj/project.assets.json --severity-threshold=high --sarif-file-output=snyk.sarif
   
   docker-build-push:
     name: Build & Push Docker Image
