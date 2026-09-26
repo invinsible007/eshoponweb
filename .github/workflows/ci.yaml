@@ -75,12 +75,15 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore eShopOnWeb.slnx
 
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
       - name: Run Snyk Open Source Scan
-        uses: snyk/actions/dotnet@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --file=eShopOnWeb.slnx --severity-threshold=high --all-projects
+        run: |
+          snyk auth ${{secrets.SNYK_TOKEN}}
+          synk test --all-projects --severity-threshold=high
   
   docker-build-push:
     name: Build & Push Docker Image
