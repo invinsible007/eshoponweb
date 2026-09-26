@@ -80,7 +80,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --file=eShopOnWeb.slnx --severity-threshold=high
+          args: --file=eShopOnWeb.slnx --severity-threshold=high --all-projects
   
   docker-build-push:
     name: Build & Push Docker Image
