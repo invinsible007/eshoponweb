@@ -12,11 +12,18 @@ WORKDIR /src
 
 # Copy solution file and project files first to maximize Docker layer caching
 COPY ["eShopOnWeb.slnx", "./"]
-COPY ["src/Web/Web.csproj", "src/Web/"]
-COPY ["src/ApplicationCore/ApplicationCore.csproj", "src/ApplicationCore/"]
-COPY ["src/Infrastructure/Infrastructure.csproj", "src/Infrastructure/"]
-COPY ["src/BlazorAdmin/BlazorAdmin.csproj", "src/BlazorAdmin/"]
-COPY ["src/BlazorShared/BlazorShared.csproj", "src/BlazorShared/"]
+COPY ["src", "./src/"]
+COPY ["test", "./src/"]
+#COPY ["src/Web/Web.csproj", "src/Web/"]
+#COPY ["src/ApplicationCore/ApplicationCore.csproj", "src/ApplicationCore/"]
+#COPY ["src/Infrastructure/Infrastructure.csproj", "src/Infrastructure/"]
+#COPY ["src/BlazorAdmin/BlazorAdmin.csproj", "src/BlazorAdmin/"]
+#COPY ["src/BlazorShared/BlazorShared.csproj", "src/BlazorShared/"]
+#COPY ["src/eShopWeb.AppHost/eShopWeb.AppHost.csproj", "src/eShopWeb.AppHost/"]
+#COPY ["src/eShopWeb.AspireServiceDefaults/eShopWeb.AspireServiceDefaults.csproj", "src/eShopWeb.AspireServiceDefaults/"]
+#COPY ["/src/PublicApi/PublicApi.csproj", "/src/PublicApi/"]
+#COPY ["/src/tests/EndToEndTests/EndToEndTests.csproj", "/src/tests/EndToEndTests/"]
+#COPY ["/src/tests/FunctionalTests/FunctionalTests.csproj", "/src/tests/FunctionalTests/"]
 
 # Restore dependencies
 RUN dotnet restore "eShopOnWeb.slnx"
