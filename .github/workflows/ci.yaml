@@ -92,9 +92,10 @@ jobs:
           snyk test --all-projects --severity-threshold=high --sarif-file-output=snyk.sarif
       
       - name: Upload Snyk report as sarif 
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: snyk.sarif
+          category: open-source-scan
   
   docker-build-push:
     name: Build & Push Docker Image
@@ -169,9 +170,10 @@ jobs:
           snyk container test ${{ env.IMAGE_NAME }}:${{ needs.docker-build-push.outputs.image_tag }} --file=Dockerfile --severity-threshold=high --sarif-file-output=snyk.sarif
 
       - name: Upload Snyk report as sarif 
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: snyk.sarif
+          category: container-scan
         
 
 
