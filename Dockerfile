@@ -10,6 +10,11 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
+# Copy root configuration & solution files first
+COPY ["*.props", "./"]
+COPY ["*.json", "./"]
+COPY ["eShopOnWeb.slnx", "./"]
+
 # Copy solution file and project files first to maximize Docker layer caching
 COPY ["src/Web/Web.csproj", "src/Web/"]
 COPY ["src/ApplicationCore/ApplicationCore.csproj", "src/ApplicationCore/"]
@@ -20,7 +25,7 @@ COPY ["src/PublicApi/PublicApi.csproj", "src/PublicApi/"]
 COPY ["src/eShopWeb.AppHost/eShopWeb.AppHost.csproj", "src/eShopWeb.AppHost/"]
 COPY ["src/eShopWeb.AspireServiceDefaults/eShopWeb.AspireServiceDefaults.csproj", "src/eShopWeb.AspireServiceDefaults/"]
 
-# Restore dependencies directly for Web.csproj (.NET 9 resolves dependencies across src cleanly)
+# Restore dependencies for Web.csproj
 RUN dotnet restore "src/Web/Web.csproj"
 
 # Copy full application source code
