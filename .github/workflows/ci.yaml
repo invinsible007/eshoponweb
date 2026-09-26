@@ -83,7 +83,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
           snyk auth ${{secrets.SNYK_TOKEN}}
-          synk test --all-projects --severity-threshold=high
+          snyk test --all-projects --severity-threshold=high
   
   docker-build-push:
     name: Build & Push Docker Image
@@ -160,3 +160,7 @@ jobs:
         with:
           sarif_file: snyk.sarif
         
+
+
+
+
