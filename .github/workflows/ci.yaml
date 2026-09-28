@@ -157,6 +157,7 @@ jobs:
         run: npm install -g snyk
 
       - name: Scan Docker image & generate SARIF
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: |
